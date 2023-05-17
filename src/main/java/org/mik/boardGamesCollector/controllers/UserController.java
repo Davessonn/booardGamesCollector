@@ -18,15 +18,9 @@ import java.util.Optional;
 public class UserController {
     @Autowired
     UserRepository userRepository;
-    @Autowired
-    DesignerRepository designerRepository;
-    @Autowired
-    CategoryRepository categoryRepository;
-    @Autowired
-    BoardGameRepository boardGameRepository;
 
     @GetMapping("/users")
-    public String showUsers(Model model) {
+    public String allUsers(Model model) {
         model.addAttribute("users", this.userRepository.findAll());
         return "users";
     }
