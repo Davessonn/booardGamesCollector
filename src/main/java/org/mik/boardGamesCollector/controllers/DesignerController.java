@@ -36,10 +36,23 @@ public class DesignerController {
     @PostMapping("/designers/edit/{id}")
     public String editDesigner (Model model, @PathVariable(value = "id") long id, Designer designer) {
         this.designerRepository.findById(id)
-                .map(des)
+                .map(designer1 -> {
+                    designer1.setName(designer.getName());
+                    designer1.setBoardGames(designer.getBoardGames());
+                    this.designerRepository.save(designer1);
+                    model.addAttribute("Done", "The designer edited");
+                    model.addAttribute("designers", this.designerRepository.findAll());
+                    return "designers";
+                });
+        return "designers";
     }
 
-
+    @PostMapping("/designers/newDesigner")
+    public String newDesigner(Model model, Designer designer) {
+        this.designerRepository.save(designer);
+        model.addAttribute("Done", "The new designer registered.");
+        return "designers";
+    }
 
 
 

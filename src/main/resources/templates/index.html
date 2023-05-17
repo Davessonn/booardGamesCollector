@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html xmlns:th="http://thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<head>
+  <title>Homepage</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css"  />
+
+</head>
+<body>
+<div>
+  <div th:insert="base/navbar :: navigation('Home')"/>
+  <div class="container">
+    <div class="alert alert-primary my-5 p-4">
+      <h3>REST API Routes:</h3>
+      <ol class="list-group list-group-numbered">
+        <li class="list-group-item d-flex justify-content-between align-items-start" sec:authorize="hasRole('admin')">
+          <div class="ms-2 me-auto">
+            <div class="fw-bold">Users</div>
+            /api/users
+          </div>
+        </li>
+        <li class="list-group-item d-flex justify-content-between align-items-start">
+          <div class="ms-2 me-auto">
+            <div class="fw-bold">BoardGames</div>
+            /api/boardGames
+          </div>
+        </li>
+        <li class="list-group-item d-flex justify-content-between align-items-start">
+          <div class="ms-2 me-auto">
+            <div class="fw-bold">Categories</div>
+            /api/categories
+          </div>
+        </li>
+      </ol>
+    </div>
+    <div class="alert alert-success my-3 p-4">
+      <div class="row">
+        <div class="col-md-12">
+          <strong>Administrator username:</strong> admin
+        </div>
+        <div class="col-md-12">
+          <strong>Administrator password:</strong> Test
+        </div>
+        <hr />
+        <div class="col-md-12">
+          <strong>User username:</strong> user
+        </div>
+        <div class="col-md-12">
+          <strong>User password:</strong> user1234
+        </div>
+      </div>
+    </div>
+    <div class="alert alert-danger my-3 p-4" >
+      <div class="text-center">
+        <div class="row">
+          <div class="col-md-12">
+            <strong>Name:</strong> Babai Dávid
+          </div>
+          <div class="col-md-12">
+            <strong>Neptun code:</strong> B6J8TN
+          </div>
+          <div class="col-md-12">
+            <strong>Date:</strong> 2023.05.17.
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"></script>
+
+</body>
+</html>

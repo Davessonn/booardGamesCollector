@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Edit BoardGame</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css"  />
+</head>
+<body>
+<div class="container p-5">
+  <div class="row">
+    <div class="col-md-12">
+      <form th:action="@{/boardgames/edit/{id}(id=${boardGame.getId()})}" method="post">
+        <input type="hidden" name="id" th:value="${boardGame.getId()}">
+        <div class="form-floating m-2">
+          <input type="text" name="title" id="title" class="form-control" placeholder="Title" th:value="${boardGame.getTitle()}" />
+          <label for="title">Title</label>
+        </div>
+        <div class="form-floating m-2">
+          <!-- <input type="text" name="Owner" id="owner" class="form-control" placeholder="Owner" th:value="${boardGame.getOwner()}" /> -->
+          <select class="form-select" name="owner" id="owner" size="5" style="height: 100px;" required>
+            <option
+                    th:each="owner : ${owners}"
+                    th:value="${owner.getId()}"
+                    th:text="${owner.getName()}"
+                    th:selected="${boardGame.owner.getId() == owner.getId()}">
+            </option>
+          </select>
+          <label for="owner">Owner</label>
+        </div>
+        <div class="form-floating m-2">
+          <input type="text" name="designer" id="designer" class="form-control" placeholder="Designer" th:value="${boardGame.getDesigner()}" />
+          <label for="designer">Designer</label>
+        </div>
+        <div class="form-floating m-2">
+          <select class="form-select" name="categories" id="categories" size="5" style="height: 100px;" required>
+            <option
+                    th:each="category : ${categories}"
+                    th:value="${category.getId()}"
+                    th:text="${category.getName()}"
+                    th:selected="${boardGame.categories.getId() == category.getId()}">
+            </option>
+          </select>
+          <label for="categories">Categories</label>
+        </div>
+        <hr />
+        <div class="m-2">
+          <button type="submit" class="btn btn-secondary">Save</button>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>
